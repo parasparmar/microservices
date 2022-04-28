@@ -1,7 +1,9 @@
-namespace Microsoft.eShopOnContainers.BuildingBlocks.EventBusServiceBus;
-
-public interface IServiceBusPersisterConnection : IDisposable
+namespace Microsoft.eShopOnContainers.BuildingBlocks.EventBusServiceBus
 {
-    ServiceBusClient TopicClient { get; }
-    ServiceBusAdministrationClient AdministrationClient { get; }
+
+    public interface IServiceBusPersisterConnection : IDisposable
+    {
+        ServiceBusClient TopicClient { get; }
+        ServiceBusAdministrationClient AdministrationClient { get; }
+    }
 }

@@ -1,18 +1,20 @@
-﻿namespace Microsoft.eShopOnContainers.Services.Ordering.Domain.Events;
-
-/// <summary>
-/// Event used when the grace period order is confirmed
-/// </summary>
-public class OrderStatusChangedToAwaitingValidationDomainEvent
-        : INotification
+﻿namespace Microsoft.eShopOnContainers.Services.Ordering.Domain.Events
 {
-    public int OrderId { get; }
-    public IEnumerable<OrderItem> OrderItems { get; }
 
-    public OrderStatusChangedToAwaitingValidationDomainEvent(int orderId,
-        IEnumerable<OrderItem> orderItems)
+    /// <summary>
+    /// Event used when the grace period order is confirmed
+    /// </summary>
+    public class OrderStatusChangedToAwaitingValidationDomainEvent
+            : INotification
     {
-        OrderId = orderId;
-        OrderItems = orderItems;
+        public int OrderId { get; }
+        public IEnumerable<OrderItem> OrderItems { get; }
+
+        public OrderStatusChangedToAwaitingValidationDomainEvent(int orderId,
+            IEnumerable<OrderItem> orderItems)
+        {
+            OrderId = orderId;
+            OrderItems = orderItems;
+        }
     }
 }

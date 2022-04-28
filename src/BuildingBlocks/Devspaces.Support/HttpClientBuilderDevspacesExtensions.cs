@@ -1,10 +1,12 @@
-﻿namespace Devspaces.Support;
-
-public static class HttpClientBuilderDevspacesExtensions
+﻿namespace Devspaces.Support
 {
-    public static IHttpClientBuilder AddDevspacesSupport(this IHttpClientBuilder builder)
+
+    public static class HttpClientBuilderDevspacesExtensions
     {
-        builder.AddHttpMessageHandler<DevspacesMessageHandler>();
-        return builder;
+        public static IHttpClientBuilder AddDevspacesSupport(this IHttpClientBuilder builder)
+        {
+            builder.AddHttpMessageHandler<DevspacesMessageHandler>();
+            return builder;
+        }
     }
 }

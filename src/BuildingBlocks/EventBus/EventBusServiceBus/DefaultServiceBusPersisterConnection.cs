@@ -1,55 +1,57 @@
-﻿namespace Microsoft.eShopOnContainers.BuildingBlocks.EventBusServiceBus;
-
-public class DefaultServiceBusPersisterConnection : IServiceBusPersisterConnection
+﻿namespace Microsoft.eShopOnContainers.BuildingBlocks.EventBusServiceBus
 {
-    private readonly string _serviceBusConnectionString;
-    private ServiceBusClient _topicClient;
-    private ServiceBusAdministrationClient _subscriptionClient;
 
-    bool _disposed;
-
-    public DefaultServiceBusPersisterConnection(string serviceBusConnectionString)
+    public class DefaultServiceBusPersisterConnection : IServiceBusPersisterConnection
     {
-        _serviceBusConnectionString = serviceBusConnectionString;
-        _subscriptionClient = new ServiceBusAdministrationClient(_serviceBusConnectionString);
-        _topicClient = new ServiceBusClient(_serviceBusConnectionString);
-    }
+        private readonly string _serviceBusConnectionString;
+        private ServiceBusClient _topicClient;
+        private ServiceBusAdministrationClient _subscriptionClient;
 
-    public ServiceBusClient TopicClient
-    {
-        get
+        bool _disposed;
+
+        public DefaultServiceBusPersisterConnection(string serviceBusConnectionString)
+        {
+            _serviceBusConnectionString = serviceBusConnectionString;
+            _subscriptionClient = new ServiceBusAdministrationClient(_serviceBusConnectionString);
+            _topicClient = new ServiceBusClient(_serviceBusConnectionString);
+        }
+
+        public ServiceBusClient TopicClient
+        {
+            get
+            {
+                if (_topicClient.IsClosed)
+                {
+                    _topicClient = new ServiceBusClient(_serviceBusConnectionString);
+                }
+                return _topicClient;
+            }
+        }
+
+        public ServiceBusAdministrationClient AdministrationClient
+        {
+            get
+            {
+                return _subscriptionClient;
+            }
+        }
+
+        public ServiceBusClient CreateModel()
         {
             if (_topicClient.IsClosed)
             {
                 _topicClient = new ServiceBusClient(_serviceBusConnectionString);
             }
+
             return _topicClient;
         }
-    }
 
-    public ServiceBusAdministrationClient AdministrationClient
-    {
-        get
+        public void Dispose()
         {
-            return _subscriptionClient;
+            if (_disposed) return;
+
+            _disposed = true;
+            _topicClient.DisposeAsync().GetAwaiter().GetResult();
         }
-    }
-
-    public ServiceBusClient CreateModel()
-    {
-        if (_topicClient.IsClosed)
-        {
-            _topicClient = new ServiceBusClient(_serviceBusConnectionString);
-        }
-
-        return _topicClient;
-    }
-
-    public void Dispose()
-    {
-        if (_disposed) return;
-
-        _disposed = true;
-        _topicClient.DisposeAsync().GetAwaiter().GetResult();
     }
 }

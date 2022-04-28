@@ -6,7 +6,8 @@
     <RootNamespace>Microsoft.eShopOnContainers.Mobile.Shopping.HttpAggregator</RootNamespace>
     <DockerComposeProjectPath>..\..\..\docker-compose.dcproj</DockerComposeProjectPath>
     <GenerateErrorForMissingTargetingPacks>false</GenerateErrorForMissingTargetingPacks>
-    <IsTransformWebConfigDisabled>true</IsTransformWebConfigDisabled>    
+    <IsTransformWebConfigDisabled>true</IsTransformWebConfigDisabled>
+    <LangVersion>preview</LangVersion>    
   </PropertyGroup>
 
   <ItemGroup>

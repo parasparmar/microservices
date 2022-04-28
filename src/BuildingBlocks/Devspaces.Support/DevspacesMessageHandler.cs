@@ -1,22 +1,24 @@
-﻿namespace Devspaces.Support;
-
-public class DevspacesMessageHandler : DelegatingHandler
+﻿namespace Devspaces.Support
 {
-    private const string DevspacesHeaderName = "azds-route-as";
-    private readonly IHttpContextAccessor _httpContextAccessor;
-    public DevspacesMessageHandler(IHttpContextAccessor httpContextAccessor)
-    {
-        _httpContextAccessor = httpContextAccessor;
-    }
 
-    protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+    public class DevspacesMessageHandler : DelegatingHandler
     {
-        var req = _httpContextAccessor.HttpContext.Request;
-
-        if (req.Headers.ContainsKey(DevspacesHeaderName))
+        private const string DevspacesHeaderName = "azds-route-as";
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        public DevspacesMessageHandler(IHttpContextAccessor httpContextAccessor)
         {
-            request.Headers.Add(DevspacesHeaderName, req.Headers[DevspacesHeaderName] as IEnumerable<string>);
+            _httpContextAccessor = httpContextAccessor;
         }
-        return base.SendAsync(request, cancellationToken);
+
+        protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+        {
+            var req = _httpContextAccessor.HttpContext.Request;
+
+            if (req.Headers.ContainsKey(DevspacesHeaderName))
+            {
+                request.Headers.Add(DevspacesHeaderName, req.Headers[DevspacesHeaderName] as IEnumerable<string>);
+            }
+            return base.SendAsync(request, cancellationToken);
+        }
     }
 }

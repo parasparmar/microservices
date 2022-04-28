@@ -1,11 +1,13 @@
-﻿namespace Microsoft.eShopOnContainers.Services.Ordering.Domain.Events;
-
-public class OrderShippedDomainEvent : INotification
+﻿namespace Microsoft.eShopOnContainers.Services.Ordering.Domain.Events
 {
-    public Order Order { get; }
 
-    public OrderShippedDomainEvent(Order order)
+    public class OrderShippedDomainEvent : INotification
     {
-        Order = order;
+        public Order Order { get; }
+
+        public OrderShippedDomainEvent(Order order)
+        {
+            Order = order;
+        }
     }
 }

@@ -1,10 +1,12 @@
-﻿namespace Devspaces.Support;
-
-public static class ServiceCollectionDevspacesExtensions
+﻿namespace Devspaces.Support
 {
-    public static IServiceCollection AddDevspaces(this IServiceCollection services)
+
+    public static class ServiceCollectionDevspacesExtensions
     {
-        services.AddTransient<DevspacesMessageHandler>();
-        return services;
+        public static IServiceCollection AddDevspaces(this IServiceCollection services)
+        {
+            services.AddTransient<DevspacesMessageHandler>();
+            return services;
+        }
     }
 }

@@ -1,26 +1,28 @@
-﻿namespace Microsoft.eShopOnContainers.BuildingBlocks.EventBus.Extensions;
-
-public static class GenericTypeExtensions
+﻿namespace Microsoft.eShopOnContainers.BuildingBlocks.EventBus.Extensions
 {
-    public static string GetGenericTypeName(this Type type)
+
+    public static class GenericTypeExtensions
     {
-        var typeName = string.Empty;
-
-        if (type.IsGenericType)
+        public static string GetGenericTypeName(this Type type)
         {
-            var genericTypes = string.Join(",", type.GetGenericArguments().Select(t => t.Name).ToArray());
-            typeName = $"{type.Name.Remove(type.Name.IndexOf('`'))}<{genericTypes}>";
+            var typeName = string.Empty;
+
+            if (type.IsGenericType)
+            {
+                var genericTypes = string.Join(",", type.GetGenericArguments().Select(t => t.Name).ToArray());
+                typeName = $"{type.Name.Remove(type.Name.IndexOf('`'))}<{genericTypes}>";
+            }
+            else
+            {
+                typeName = type.Name;
+            }
+
+            return typeName;
         }
-        else
+
+        public static string GetGenericTypeName(this object @object)
         {
-            typeName = type.Name;
+            return @object.GetType().GetGenericTypeName();
         }
-
-        return typeName;
-    }
-
-    public static string GetGenericTypeName(this object @object)
-    {
-        return @object.GetType().GetGenericTypeName();
     }
 }

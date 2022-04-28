@@ -1,18 +1,20 @@
-﻿namespace Microsoft.eShopOnContainers.Services.Ordering.Domain.Exceptions;
-
-/// <summary>
-/// Exception type for domain exceptions
-/// </summary>
-public class OrderingDomainException : Exception
+﻿namespace Microsoft.eShopOnContainers.Services.Ordering.Domain.Exceptions
 {
-    public OrderingDomainException()
-    { }
 
-    public OrderingDomainException(string message)
-        : base(message)
-    { }
+    /// <summary>
+    /// Exception type for domain exceptions
+    /// </summary>
+    public class OrderingDomainException : Exception
+    {
+        public OrderingDomainException()
+        { }
 
-    public OrderingDomainException(string message, Exception innerException)
-        : base(message, innerException)
-    { }
+        public OrderingDomainException(string message)
+            : base(message)
+        { }
+
+        public OrderingDomainException(string message, Exception innerException)
+            : base(message, innerException)
+        { }
+    }
 }

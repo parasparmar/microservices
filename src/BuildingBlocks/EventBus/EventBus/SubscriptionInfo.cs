@@ -1,22 +1,24 @@
-﻿namespace Microsoft.eShopOnContainers.BuildingBlocks.EventBus;
-
-public partial class InMemoryEventBusSubscriptionsManager : IEventBusSubscriptionsManager
+﻿namespace Microsoft.eShopOnContainers.BuildingBlocks.EventBus
 {
-    public class SubscriptionInfo
+
+    public partial class InMemoryEventBusSubscriptionsManager : IEventBusSubscriptionsManager
     {
-        public bool IsDynamic { get; }
-        public Type HandlerType { get; }
-
-        private SubscriptionInfo(bool isDynamic, Type handlerType)
+        public class SubscriptionInfo
         {
-            IsDynamic = isDynamic;
-            HandlerType = handlerType;
+            public bool IsDynamic { get; }
+            public Type HandlerType { get; }
+
+            private SubscriptionInfo(bool isDynamic, Type handlerType)
+            {
+                IsDynamic = isDynamic;
+                HandlerType = handlerType;
+            }
+
+            public static SubscriptionInfo Dynamic(Type handlerType) =>
+                new SubscriptionInfo(true, handlerType);
+
+            public static SubscriptionInfo Typed(Type handlerType) =>
+                new SubscriptionInfo(false, handlerType);
         }
-
-        public static SubscriptionInfo Dynamic(Type handlerType) =>
-            new SubscriptionInfo(true, handlerType);
-
-        public static SubscriptionInfo Typed(Type handlerType) =>
-            new SubscriptionInfo(false, handlerType);
     }
 }

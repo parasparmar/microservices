@@ -5,7 +5,8 @@
     <UserSecretsId>aspnet-eShopOnContainers.Identity-90487118-103c-4ff0-b9da-e5e26f7ab0c5</UserSecretsId>
     <DockerComposeProjectPath>..\..\..\..\docker-compose.dcproj</DockerComposeProjectPath>
     <GenerateErrorForMissingTargetingPacks>false</GenerateErrorForMissingTargetingPacks>
-    <IsTransformWebConfigDisabled>true</IsTransformWebConfigDisabled>    
+    <IsTransformWebConfigDisabled>true</IsTransformWebConfigDisabled>
+    <LangVersion>preview</LangVersion>    
   </PropertyGroup>
 
   <ItemGroup>
@@ -50,7 +51,7 @@
     <PackageReference Include="Serilog.Sinks.Seq" Version="5.0.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.1" />
     <PackageReference Include="Swashbuckle.AspNetCore.Newtonsoft" Version="6.2.1" />
-	  <PackageReference Include="System.Data.SqlClient" version="4.8.2"/>
+	  <PackageReference Include="System.Data.SqlClient" version="4.8.2" />
     <PackageReference Include="Azure.Extensions.AspNetCore.Configuration.Secrets" Version="1.2.1" />
     <PackageReference Include="Azure.Identity" Version="1.4.0" />
   </ItemGroup>

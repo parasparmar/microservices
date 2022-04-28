@@ -1,13 +1,15 @@
-﻿namespace Microsoft.eShopOnContainers.Services.Ordering.Infrastructure.EntityConfigurations;
-
-class ClientRequestEntityTypeConfiguration
-    : IEntityTypeConfiguration<ClientRequest>
+﻿namespace Microsoft.eShopOnContainers.Services.Ordering.Infrastructure.EntityConfigurations
 {
-    public void Configure(EntityTypeBuilder<ClientRequest> requestConfiguration)
+
+    class ClientRequestEntityTypeConfiguration
+        : IEntityTypeConfiguration<ClientRequest>
     {
-        requestConfiguration.ToTable("requests", OrderingContext.DEFAULT_SCHEMA);
-        requestConfiguration.HasKey(cr => cr.Id);
-        requestConfiguration.Property(cr => cr.Name).IsRequired();
-        requestConfiguration.Property(cr => cr.Time).IsRequired();
+        public void Configure(EntityTypeBuilder<ClientRequest> requestConfiguration)
+        {
+            requestConfiguration.ToTable("requests", OrderingContext.DEFAULT_SCHEMA);
+            requestConfiguration.HasKey(cr => cr.Id);
+            requestConfiguration.Property(cr => cr.Name).IsRequired();
+            requestConfiguration.Property(cr => cr.Time).IsRequired();
+        }
     }
 }

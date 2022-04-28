@@ -9,7 +9,8 @@
     <UserSecretsId>aspnet-Catalog.API-20161122013618</UserSecretsId>
     <DockerComposeProjectPath>..\..\..\..\docker-compose.dcproj</DockerComposeProjectPath>
     <GenerateErrorForMissingTargetingPacks>false</GenerateErrorForMissingTargetingPacks>
-    <IsTransformWebConfigDisabled>true</IsTransformWebConfigDisabled>    
+    <IsTransformWebConfigDisabled>true</IsTransformWebConfigDisabled>
+    <LangVersion>preview</LangVersion>    
   </PropertyGroup>
 
 
@@ -68,10 +69,10 @@
     <PackageReference Include="Serilog.Sinks.Seq" Version="4.1.0-dev-00166" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.1" />
     <PackageReference Include="Swashbuckle.AspNetCore.Newtonsoft" Version="6.2.1" />
-    <PackageReference Include="System.Data.SqlClient" version="4.8.2"/>
+    <PackageReference Include="System.Data.SqlClient" version="4.8.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="6.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.0"/>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.0" />
   </ItemGroup>
 
   <ItemGroup>

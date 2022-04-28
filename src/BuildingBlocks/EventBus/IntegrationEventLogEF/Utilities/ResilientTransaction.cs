@@ -1,25 +1,27 @@
-﻿namespace Microsoft.eShopOnContainers.BuildingBlocks.IntegrationEventLogEF.Utilities;
-
-public class ResilientTransaction
+﻿namespace Microsoft.eShopOnContainers.BuildingBlocks.IntegrationEventLogEF.Utilities
 {
-    private DbContext _context;
-    private ResilientTransaction(DbContext context) =>
-        _context = context ?? throw new ArgumentNullException(nameof(context));
 
-    public static ResilientTransaction New(DbContext context) => new(context);
-
-    public async Task ExecuteAsync(Func<Task> action)
+    public class ResilientTransaction
     {
-        //Use of an EF Core resiliency strategy when using multiple DbContexts within an explicit BeginTransaction():
-        //See: https://docs.microsoft.com/en-us/ef/core/miscellaneous/connection-resiliency
-        var strategy = _context.Database.CreateExecutionStrategy();
-        await strategy.ExecuteAsync(async () =>
+        private DbContext _context;
+        private ResilientTransaction(DbContext context) =>
+            _context = context ?? throw new ArgumentNullException(nameof(context));
+
+        public static ResilientTransaction New(DbContext context) => new(context);
+
+        public async Task ExecuteAsync(Func<Task> action)
         {
-            using (var transaction = _context.Database.BeginTransaction())
+            //Use of an EF Core resiliency strategy when using multiple DbContexts within an explicit BeginTransaction():
+            //See: https://docs.microsoft.com/en-us/ef/core/miscellaneous/connection-resiliency
+            var strategy = _context.Database.CreateExecutionStrategy();
+            await strategy.ExecuteAsync(async () =>
             {
-                await action();
-                transaction.Commit();
-            }
-        });
+                using (var transaction = _context.Database.BeginTransaction())
+                {
+                    await action();
+                    transaction.Commit();
+                }
+            });
+        }
     }
 }
