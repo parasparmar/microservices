@@ -1,5 +1,7 @@
-﻿namespace Webhooks.API.Exceptions;
-
-public class WebhooksDomainException : Exception
+﻿namespace Webhooks.API.Exceptions
 {
+
+    public class WebhooksDomainException : Exception
+    {
+    }
 }

@@ -1,8 +1,10 @@
-﻿namespace Webhooks.API.Model;
-
-public enum WebhookType
+﻿namespace Webhooks.API.Model
 {
-    CatalogItemPriceChange = 1,
-    OrderShipped = 2,
-    OrderPaid = 3
+
+    public enum WebhookType
+    {
+        CatalogItemPriceChange = 1,
+        OrderShipped = 2,
+        OrderPaid = 3
+    }
 }

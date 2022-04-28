@@ -1,15 +1,17 @@
-﻿namespace Webhooks.API.Services;
-
-public class WebhooksRetriever : IWebhooksRetriever
+﻿namespace Webhooks.API.Services
 {
-    private readonly WebhooksContext _db;
-    public WebhooksRetriever(WebhooksContext db)
+
+    public class WebhooksRetriever : IWebhooksRetriever
     {
-        _db = db;
-    }
-    public async Task<IEnumerable<WebhookSubscription>> GetSubscriptionsOfType(WebhookType type)
-    {
-        var data = await _db.Subscriptions.Where(s => s.Type == type).ToListAsync();
-        return data;
+        private readonly WebhooksContext _db;
+        public WebhooksRetriever(WebhooksContext db)
+        {
+            _db = db;
+        }
+        public async Task<IEnumerable<WebhookSubscription>> GetSubscriptionsOfType(WebhookType type)
+        {
+            var data = await _db.Subscriptions.Where(s => s.Type == type).ToListAsync();
+            return data;
+        }
     }
 }

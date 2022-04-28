@@ -1,8 +1,10 @@
-﻿namespace WebhookClient.Models;
-
-public class WebhookResponse
+﻿namespace WebhookClient.Models
 {
-    public DateTime Date { get; set; }
-    public string DestUrl { get; set; }
-    public string Token { get; set; }
+
+    public class WebhookResponse
+    {
+        public DateTime Date { get; set; }
+        public string DestUrl { get; set; }
+        public string Token { get; set; }
+    }
 }

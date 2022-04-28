@@ -1,21 +1,23 @@
-﻿namespace Webhooks.API.Infrastructure;
-
-public class WebhooksContext : DbContext
+﻿namespace Webhooks.API.Infrastructure
 {
 
-    public WebhooksContext(DbContextOptions<WebhooksContext> options) : base(options)
+    public class WebhooksContext : DbContext
     {
+
+        public WebhooksContext(DbContextOptions<WebhooksContext> options) : base(options)
+        {
+        }
+        public DbSet<WebhookSubscription> Subscriptions { get; set; }
     }
-    public DbSet<WebhookSubscription> Subscriptions { get; set; }
-}
 
-public class WebhooksContextDesignFactory : IDesignTimeDbContextFactory<WebhooksContext>
-{
-    public WebhooksContext CreateDbContext(string[] args)
+    public class WebhooksContextDesignFactory : IDesignTimeDbContextFactory<WebhooksContext>
     {
-        var optionsBuilder = new DbContextOptionsBuilder<WebhooksContext>()
-            .UseSqlServer("Server=.;Initial Catalog=Microsoft.eShopOnContainers.Services.CatalogDb;Integrated Security=true");
+        public WebhooksContext CreateDbContext(string[] args)
+        {
+            var optionsBuilder = new DbContextOptionsBuilder<WebhooksContext>()
+                .UseSqlServer("Server=.;Initial Catalog=Microsoft.eShopOnContainers.Services.CatalogDb;Integrated Security=true");
 
-        return new WebhooksContext(optionsBuilder.Options);
+            return new WebhooksContext(optionsBuilder.Options);
+        }
     }
 }
